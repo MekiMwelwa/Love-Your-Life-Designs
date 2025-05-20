@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Billing - Love Your Life Designs</title>
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdfdfd;
+      padding: 20px;
+    }
+
+    .billing-container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: #e76f51;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #d65b3f;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="billing-container">
+    <h2>Billing Information</h2>
+    <form id="billing-form" onsubmit="event.preventDefault(); payNow();">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label for="phone">Phone (MTN/Airtel/Zamtel)</label>
+      <input type="tel" id="phone" required placeholder="e.g., 0967123456">
+
+      <button type="submit">Pay with Mobile Money</button>
+      <div class="note">You will be redirected to complete your payment via MTN, Airtel, or Zamtel.</div>
+    </form>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function calculateTotal() {
+      return cart.reduce((total, item) => {
+        return total + (parseFloat(item.price.replace("$", "")) || 0);
+      }, 0);
+    }
+
+    function payNow() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const total = calculateTotal();
+
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+
+      FlutterwaveCheckout({
+        public_key: "FLWPUBK-xxxxxxxxxxxxxxxxxxxxx-X", // Replace with your actual public key
+        tx_ref: "LYLD-" + Date.now(),
+        amount: total.toFixed(2),
+        currency: "ZMW",
+        payment_options: "mobilemoneyzambia",
+        customer: {
+          email: email,
+          phonenumber: phone,
+          name: name
+        },
+        callback: function (data) {
+          alert("Payment successful! Transaction ID: " + data.transaction_id);
+          localStorage.removeItem("cart");
+          window.location.href = "thankyou.html";
+        },
+        onclose: function () {
+          alert("Payment was cancelled or closed.");
+        },
+        customizations: {
+          title: "Love Your Life Designs",
+          description: "Billing for your order",
+          logo: "https://yourdomain.com/logo.png"
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

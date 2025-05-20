@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products - Love Your Life Designs</title>
+  <meta name="description" content="Shop beautifully handcrafted lifestyle products by Love Your Life Design." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+   /* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ec8107;
+  color: #131313;
+  line-height: 1.6;
+  background-image: url(Images/background2.jpg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* HEADER */
+header {
+  background-color: non;
+  padding: 20px 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+    background-image: url(Images/background2.jpg);
+
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  margin: 0 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+nav a:hover {
+  color: #e76f51;
+}
+
+/* CART STATUS */
+.cart-status {
+  text-align: right;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* SEARCH BAR */
+.search-bar {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 280px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* INTRO SECTION */
+.intro {
+  text-align: center;
+  max-width: 900px;
+  margin: 50px auto 30px;
+  padding: 0 20px;
+}
+
+.intro h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* PRODUCT GRID */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 20px;
+}
+
+/* PRODUCT CARD */
+.product-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  width: 280px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.product-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+}
+
+.product-card .price {
+  font-weight: bold;
+  color: #e76f51;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.product-card button {
+  background-color: #e76f51;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.product-card button:hover {
+  background-color: #d65b3f;
+}
+
+/* CTA SECTION */
+.cta-shop {
+  background-color: #f9f9f9;
+  padding: 50px 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.cta-shop h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.cta-shop p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.cta-shop .btn {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.cta-shop .btn:hover {
+  background-color: #555;
+}
+
+/* FOOTER */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  margin-top: 50px;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product-card {
+    width: 90%;
+  }
+
+  .search-bar input {
+    width: 90%;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Header with navigation and cart info -->
+  <header>
+    <h1>OUR PRODUCTS</h1>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="products.html" aria-current="page">Products</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="cart.html">Cart</a>
+      <a href="Contact.html">Contact Us</a>
+    </nav>
+    <div class="cart-status">
+      🛒 Cart: <span id="cart-count">0</span> items
+    </div>
+  </header>
+
+  
+
+  <!-- Intro text -->
+  <main>
+    <section class="intro">
+      <h2>Customised with Love</h2>
+      <p>Each piece in our collection is made with care and intention, designed to bring warmth, meaning, and joy to your everyday life.</p>
+    </section>
+
+    <!-- Product listings -->
+    <section class="product-grid" aria-label="Product list">
+
+      <article class="product-card" aria-label="Grey LYL Tee">
+        <img src="Images\IMG-20250309-WA0049.jpg" alt="Grey LYL  Tee">
+        <h3>Grey LYL T-shirt</h3>
+        <p class="price">K165</p>
+        <p>Wear your heart on your sleeve(literally!) with our designs.</p>
+        <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+        <button>Add to Cart</button>
+      </article>
+
+      <article class="product-card" aria-label="Green LYL Tee">
+        <img src="Images\IMG-20250309-WA0048.jpg" alt="Green LYL Tee">
+        <h3>Green LYL T-shirt</h3>
+        <p class="price">K165</p>
+        <p>Unravel the threads of negativity, wear postivity instead.</p>
+        <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+        <button>Add to Cart</button>
+      </article>
+
+      <article class="product-card" aria-label="Yellow LYL Tee">
+        <img src="Images\IMG-20250309-WA0046.jpg" alt="Yellow LYL Tee">
+        <h3>Yellow LYL T-shirt</h3>
+        <p class="price">K165</p>
+        <p>Savor the moment, wear the vibe.</p>
+        <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+        <button>Add to Cart</button>
+      </article>
+
+      <section class="product-grid" aria-label="Product list">
+
+        <article class="product-card" aria-label="Blue LYL Tee">
+          <img src="Images\IMG-20250307-WA0004.jpg" alt="Blue LYL Tee">
+          <h3>Blue LYL T-shirt</h3>
+          <p class="price">K165</p>
+          <p>T-shirts for people who love their life, flaws and all.</p>
+          <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+          <button>Add to Cart</button>
+        </article>
+      
+        <article class="product-card" aria-label="Brown LYL Tee">
+          <img src="Images\IMG-20250309-WA0052.jpg" alt="Brown LYL Tee">
+          <h3>Brown LYL T-shirt</h3>
+          <p class="price">K165</p>
+          <p>Self-love is the best love - wear it proudly!</p>
+            <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+          <button>Add to Cart</button>
+        </article>
+      
+        <article class="product-card" aria-label="Orange LYL Tee">
+          <img src="Images\IMG-20250309-WA0050.jpg" alt="Orange LYL Tee">
+          <h3>Orange LYL T-shirt</h3>
+          <p class="price">K165</p>
+          <p>Where words fail, tees speak volumes.</p>
+          <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+          <button>Add to Cart</button>
+        </article>
+      
+        <article class="product-card" aria-label="Black LYL Tee">
+          <img src="Images\WhatsApp Image 2025-05-08 at 18.11.01_8765ed02.jpg" alt="Purple LYL Tee">
+          <h3>Purple LYL T-shirt</h3>
+          <p class="price">K165</p>
+          <p>Life hack: wear a cool tee, feel instantly cool.</p>
+          <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+          <button>Add to Cart</button>
+        </article>
+      
+        <article class="product-card" aria-label="Wooden Tray">
+          <img src="Images\IMG-20250309-WA0051.jpg" alt="Black LYL Tee">
+          <h3>Black LYL T-shirt</h3>
+          <p class="price">K165</p>
+          <p>Life's a canvas, wear your art.</p>
+          <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+          <button>Add to Cart</button>
+        </article>
+      
+        <article class="product-card" aria-label="Macrame Wall Hanging">
+          <img src="Images\WhatsApp Image 2025-05-08 at 18.10.51_917d6b19.jpg" alt="Beige LYL Tee">
+          <h3>Beige LYL T-shirt</h3>
+          <p class="price">K165</p>
+          <p>Our tees: not a substitute for therapy, but they're a good start.</p>
+          <h4>Sizes:</h4>
+           <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>X-Large</option>
+        </select>
+          <button>Add to Cart</button>
+        </article>
+      
+      </section>
+      
+    </section>
+
+    <!-- Call to action -->
+    <section class="cta-shop">
+      <h2>We'd Love to Hear From You!</h2>
+      <p>Whether you have questions or want a custom piece, our team is ready to help.</p>
+      <a href="contact.html" class="btn">Contact Us Today</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+  <p>© 2025 Love Your Life Designs | Designed & Developed by Mwelwa Meki</p>
+</footer>
+
+</body>
+</html>
+<script>
+    // Basic cart array to hold added items
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+    // Select all buttons
+    const buttons = document.querySelectorAll('.product-card button');
+  
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.parentElement;
+        const name = card.querySelector('h3').textContent;
+        const price = card.querySelector('.price').textContent;
+        const img = card.querySelector('img').getAttribute('src');
+  
+        const product = { name, price, img };
+  
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+  
+        alert(`${name} added to cart!`);
+        updateCartCount();
+      });
+    });
+  
+    function updateCartCount() {
+      const count = JSON.parse(localStorage.getItem('cart'))?.length || 0;
+      const countDisplay = document.getElementById('cart-count');
+      if (countDisplay) countDisplay.textContent = count;
+    }
+  
+    updateCartCount();
+  </script>

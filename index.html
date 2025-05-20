@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Your Life Designs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <style>
+  /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+  padding: 0 20px;
+  background-image: url(Images/background2.jpg);
+ 
+}
+
+header {
+  
+  background: none;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 10px;
+  color: #0e0d0d;
+}
+
+nav{
+  display: inline;
+
+}
+
+navlinks a{
+  display: inline;
+  margin: 0 10px;
+  color: #3127b6;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a{
+  display: inline;
+  color: rgb(14, 13, 13) ;
+
+}
+
+.nav-links a:hover{
+  color: #20c3d8;
+}
+
+main {
+  padding: 20px 0;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background: url(Images/IMG-20250307-WA0004.jpg);
+  background-position: relative;
+  background-size: cover;
+  opacity: 75%;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #333;
+  color: #f7f0f0;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #555;
+}
+
+/* About Section */
+.about {
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: rgb(8, 8, 8);
+}
+
+.about p {
+  font-size: 1.1rem;
+  color: #0c0c0c;
+}
+
+/* Product Grid */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+  opacity: 90%;
+}
+
+.product-card {
+  border: 1px solid #030303;
+  border-radius: 8px;
+  padding: 15px;
+  width: 250px;
+  text-align: center;
+  background-color: #f5ecec;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  opacity: 80%;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.product-card h3 {
+  margin: 10px 0 5px;
+}
+
+.product-card p {
+  margin-bottom: 10px;
+}
+
+/* Testimonials */
+.testimonials {
+   border: 1px solid #030303;
+  background: #fdfcfd;
+  padding: 40px 20px;
+  text-align: center;
+  opacity: 85%;
+}
+
+.testimonials h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.testimonials blockquote {
+  font-style: italic;
+  margin: 20px auto;
+  max-width: 600px;
+  color: #444;
+}
+
+.testimonials cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background: black;
+  color: #fff;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .product-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+}
+
+  </style>
+  <header>
+      <h2>Love Your Life Designs</h2>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">checkout</a>
+        <a href="contact.html">Contact Us</a>    
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Welcome to Love Your Life Designs</h2>
+<p>Elevate your wardrobe with our beautifully crafted tees.</p>
+      <a href="products.html" class="btn">Shop Now</a>s
+    </section>
+
+    
+
+    <section class="featured-products">
+      <h2 style="color: #1b1b1b;">Featured Products</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="Images\WhatsApp Image 2025-05-08 at 18.10.50_9e686b6c.jpg" alt="Red LYL Tee">
+          <h3>Red LYL T-shirt</h3>
+          <p>K165</p>
+          <a href="products.html" class="btn">View Product</a>
+        </div>
+        <div class="product-card">
+          <img src="Images\IMG-20250309-WA0045.jpg" alt="Green LYL Tee">
+          <h3>Green LYL T-shirt</h3>
+          <p>K165</p>
+          <a href="products.html" class="btn">View Product</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <h2>What Our Customers Say</h2>
+      <blockquote>
+        “I love everything about these designs – the style, the quality, the meaning behind each piece. Highly recommend!”<br>
+        <cite>– Martha Z.</cite>
+      </blockquote>
+      <blockquote>
+        “Fast shipping and gorgeous packaging. These items make perfect gifts!”<br>
+        <cite>– Everlyn M.</cite>
+      </blockquote>
+    </section>
+  <section class="about">
+      <h2 color="white">About Us</h2>
+      <p color="white">
+        Welcome to Love Your Life, your go-to destination for apparel that inspires positivity and self-love. We believe that life is a beautiful journey, and every moment is an opportunity to spread love, kindness, and good vibes.
+Our mission is to create comfortable, stylish and meaningful tees that remind you to love yourself, love others and love the life you live.
+      </p>
+    </section>
+  
+  </main>
+
+
+  <footer>
+  <p>© 2025 Love Your Life Designs | Designed & Developed by Mwelwa Meki</p>
+</footer>
+</body>
+</html>

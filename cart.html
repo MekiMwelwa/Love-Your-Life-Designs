@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - Love Your Life Designs</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-image: url(Images/background2.jpg);
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      background-color: rgb(202, 150, 5);
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      background-image: url(Images/background2.jpg);
+    }
+    
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    nav {
+      margin: 15px 0;
+    }
+    
+    nav a {
+      margin: 0 15px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .cart-container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin-top: 30px;
+    }
+    
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .cart-items {
+      margin-bottom: 30px;
+    }
+    
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+      justify-content: space-between;
+    }
+    
+    .item-details {
+      flex-grow: 1;
+    }
+    
+    .item-controls {
+      display: flex;
+      align-items: center;
+    }
+    
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+    }
+    
+    .quantity-control button {
+      background: #f0f0f0;
+      border: none;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    
+    .quantity-control span {
+      margin: 0 10px;
+      min-width: 20px;
+      text-align: center;
+    }
+    
+    .remove-btn {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .cart-summary {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: right;
+    }
+    
+    .checkout-btn {
+      background: #111111;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    
+    .checkout-btn:hover {
+      background: #dd2505;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 50px 0;
+    }
+    
+    .continue-shopping {
+      display: inline-block;
+      margin-top: 20px;
+      color: #2a9d8f;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: 1px solid #2a9d8f;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+    
+    .continue-shopping:hover {
+      background: #2a9d8f;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Your Shopping Cart</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+      </nav>
+    </header>
+    
+    <div class="cart-container">
+      <div id="cartContent">
+        <!-- Cart items will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Check if we're coming back from a successful checkout
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('checkout_success')) {
+      // Clear the cart
+      localStorage.removeItem('cart');
+      // Remove the parameter from URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Get cart from localStorage or initialize empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Function to render the cart
+    function renderCart() {
+      const cartContent = document.getElementById('cartContent');
+      
+      if (cart.length === 0) {
+        cartContent.innerHTML = `
+          <div class="empty-cart">
+            <h2>Your cart is empty</h2>
+            <p>Looks like you haven't added any items yet.</p>
+            <a href="products.html" class="continue-shopping">Continue Shopping</a>
+          </div>
+        `;
+        return;
+      }
+      
+      let totalItems = 0;
+      let totalPrice = 0;
+      
+      // Count quantities and calculate total price
+      const itemCounts = {};
+      cart.forEach(item => {
+        const price = typeof item.price === 'string' ? 
+                     parseFloat(item.price.replace('K', '')) : 
+                     item.price;
+        
+        if (!itemCounts[item.name]) {
+          itemCounts[item.name] = {
+            ...item,
+            quantity: 0,
+            price: price
+          };
+        }
+        itemCounts[item.name].quantity++;
+        totalItems++;
+        totalPrice += price;
+      });
+      
+      // Generate cart HTML
+      let cartHTML = `
+        <div class="cart-header">
+          <h2>Your Items (${totalItems})</h2>
+        </div>
+        <div class="cart-items">
+      `;
+      
+      Object.values(itemCounts).forEach(item => {
+        cartHTML += `
+          <div class="cart-item">
+            <div class="item-details">
+              <h3>${item.name}</h3>
+              <p>K${item.price.toFixed(2)} × ${item.quantity}</p>
+            </div>
+            <div class="item-controls">
+              <div class="quantity-control">
+                <button onclick="updateQuantity('${item.name}', -1)">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="updateQuantity('${item.name}', 1)">+</button>
+              </div>
+              <button class="remove-btn" onclick="removeItem('${item.name}')">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartHTML += `
+        </div>
+        <div class="cart-summary">
+          <h3>Total: K${totalPrice.toFixed(2)}</h3>
+          <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
+        </div>
+      `;
+      
+      cartContent.innerHTML = cartHTML;
+    }
+    
+    // Update item quantity
+    function updateQuantity(name, change) {
+      if (change === -1) {
+        // Remove one instance of the item
+        const index = cart.findIndex(item => item.name === name);
+        if (index !== -1) {
+          cart.splice(index, 1);
+        }
+      } else {
+        // Add a new instance of the item
+        const item = cart.find(item => item.name === name);
+        if (item) {
+          cart.push({...item});
+        }
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+    
+    // Remove all instances of an item
+    function removeItem(name) {
+      if (confirm('Remove all of this item from your cart?')) {
+        cart = cart.filter(item => item.name !== name);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+      }
+    }
+    
+    // Go to checkout
+    function goToCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Please add items before checkout.');
+        return;
+      }
+      window.location.href = 'checkout.html';
+    }
+    
+    // Initial render
+    renderCart();
+  </script>
+</body>
+</html>
